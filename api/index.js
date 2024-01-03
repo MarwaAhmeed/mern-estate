@@ -3,6 +3,13 @@ const mongoose = require("mongoose");
 const app = expres();
 require("dotenv").config();
 const URL = process.env.MONGO||"";
+const userRouter = require("./routes/user.route");
+const authRouter=require("./routes/auth.route")
+
+app.use(expres.json());
+app.use('/api/auth',authRouter)
+
+
 
 mongoose.connect(URL).then(() => {
     console.log("Connected to database")
