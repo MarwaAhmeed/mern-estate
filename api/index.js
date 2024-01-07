@@ -1,12 +1,16 @@
 const expres = require("express");
 const mongoose = require("mongoose");
 const app = expres();
+const cors = require("cors");
+const morgan = require("morgan");
+app.use(cors())
 require("dotenv").config();
 const URL = process.env.MONGO||"";
 const userRouter = require("./routes/user.route");
 const authRouter=require("./routes/auth.route")
 
 app.use(expres.json());
+app.use(morgan("dev"))
 app.use('/api/auth',authRouter)
 
 
